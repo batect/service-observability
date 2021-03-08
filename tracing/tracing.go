@@ -12,16 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package observability_test
+package tracing
 
 import (
-	"testing"
-
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
+	"fmt"
+	"net/http"
 )
 
-func TestCmd(t *testing.T) {
-	RegisterFailHandler(Fail)
-	RunSpecs(t, "Observability Suite")
+func NameHTTPRequestSpan(operation string, req *http.Request) string {
+	if operation == "" {
+		return fmt.Sprintf("%v %v", req.Method, req.URL.String())
+	}
+
+	return fmt.Sprintf("%v: %v %v", operation, req.Method, req.URL.String())
 }
