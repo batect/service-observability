@@ -1,0 +1,7 @@
+.batect/caches
+.idea/
+
+vendor/
+
+batect.local.yml
+coverage.txt
