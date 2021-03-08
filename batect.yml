@@ -1,0 +1,76 @@
+containers:
+  build-env:
+    build_directory: .batect/build-env
+    volumes:
+      - local: .
+        container: /code
+        options: cached
+      - type: cache
+        name: go-cache
+        container: /go
+      - type: cache
+        name: golangci-cache
+        container: /home/container-user/.cache/golangci-lint/
+    working_directory: /code
+    environment:
+      GOCACHE: /go/cache
+    run_as_current_user:
+      enabled: true
+      home_directory: /home/container-user
+
+tasks:
+  setup:
+    description: Download all dependencies used by the library.
+    group: Setup tasks
+    run:
+      container: build-env
+      command: sh -c 'go mod download && go get github.com/onsi/ginkgo/ginkgo'
+
+  build:
+    description: Build the library.
+    group: Build tasks
+    run:
+      container: build-env
+      command: go build ./...
+
+  unitTest:
+    description: Run the unit tests.
+    group: Test tasks
+    run:
+      container: build-env
+      command: ginkgo --regexScansFilePath --skip='_integration_test.go$' -race -coverprofile=coverage.txt -covermode=atomic ./...
+
+  continuousUnitTest:
+    description: Run the unit tests, and re-run them when any code changes are detected.
+    group: Test tasks
+    run:
+      container: build-env
+      command: ginkgo watch --regexScansFilePath --skip='_integration_test.go$' ./...
+
+  shell:
+    description: Start a shell in the development environment.
+    group: Utility tasks
+    run:
+      container: build-env
+      command: bash
+
+  lint:
+    description: Check for linting errors in Golang files.
+    group: Linting tasks
+    run:
+      container: build-env
+      command: golangci-lint run ./...
+
+  lintFix:
+    description: Fix linting errors in Golang files.
+    group: Linting tasks
+    run:
+      container: build-env
+      command: golangci-lint run --fix ./...
+
+  checkLicenseHeader:
+    description: Check that all files have the required license header.
+    group: Linting tasks
+    run:
+      container: build-env
+      command: ./scripts/check_licenses.sh

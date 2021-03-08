@@ -1,0 +1,69 @@
+linters-settings:
+  lll:
+    line-length: 180
+
+  wsl:
+    allow-cuddle-declarations: true
+
+linters:
+  enable:
+    - asciicheck
+    - bodyclose
+    - deadcode
+    - depguard
+    - dogsled
+    - dupl
+    - errcheck
+    - exhaustive
+    - exportloopref
+    - funlen
+    - gochecknoglobals
+    - gochecknoinits
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - godot
+    # Disabled: - godox
+    - goerr113
+    - gofmt
+    # Disabled: - gofumpt (would be good to turn this on if the "No empty lines before a simple error check" rule could be disabled
+    - goheader
+    - goimports
+    - golint
+    # Disabled: - gomnd
+    # Disabled: - gomodguard
+    - goprintffuncname
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    # Disabled: interfacer
+    - lll
+    - maligned
+    - misspell
+    - nakedret
+    - nestif
+    - noctx
+    - nolintlint
+    - prealloc
+    - rowserrcheck
+    - scopelint
+    - sqlclosecheck
+    - staticcheck
+    - structcheck
+    - stylecheck
+    - testpackage
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - varcheck
+    - whitespace
+    - wsl
+
+issues:
+  exclude-rules:
+    # Allow use of errors.New("...") - match on text until specific code is added as per https://github.com/Djarvur/go-err113/issues/10
+    - text: "do not define dynamic errors, use wrapped static errors instead"
+      linters: [goerr113]
