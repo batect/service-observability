@@ -18,7 +18,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/batect/service-observability/observability"
+	"github.com/batect/service-observability/propagators"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"go.opentelemetry.io/otel/oteltest"
@@ -27,7 +27,7 @@ import (
 
 // Based on test cases from https://github.com/census-ecosystem/opencensus-go-exporter-stackdriver/blob/master/propagation/http_test.go
 var _ = Describe("A GCP tracing propagator", func() {
-	propagator := observability.GCPPropagator{}
+	propagator := propagators.GCPPropagator{}
 
 	Context("when processing incoming requests", func() {
 		originalSpanContext := trace.SpanContext{TraceID: [16]byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, SpanID: [8]byte{1, 2, 3, 4, 5, 6, 7, 8}}

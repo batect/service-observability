@@ -17,7 +17,7 @@ package tracing_test
 import (
 	"net/http/httptest"
 
-	"github.com/batect/service-observability/observability"
+	"github.com/batect/service-observability/tracing"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
@@ -29,7 +29,7 @@ var _ = Describe("Naming HTTP request spans", func() {
 		var name string
 
 		BeforeEach(func() {
-			name = observability.NameHTTPRequestSpan("Server", req)
+			name = tracing.NameHTTPRequestSpan("Server", req)
 		})
 
 		It("includes the operation name, HTTP method and URL in the name", func() {
@@ -41,7 +41,7 @@ var _ = Describe("Naming HTTP request spans", func() {
 		var name string
 
 		BeforeEach(func() {
-			name = observability.NameHTTPRequestSpan("", req)
+			name = tracing.NameHTTPRequestSpan("", req)
 		})
 
 		It("does not include the operation name in the span name", func() {
