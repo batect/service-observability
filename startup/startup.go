@@ -18,6 +18,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"cloud.google.com/go/profiler"
 	mexporter "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric"
@@ -26,7 +27,9 @@ import (
 	"github.com/batect/service-observability/tracing"
 	stackdriver "github.com/charleskorn/logrus-stackdriver-formatter"
 	"github.com/sirupsen/logrus"
+	"go.opentelemetry.io/contrib/instrumentation/host"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
+	"go.opentelemetry.io/contrib/instrumentation/runtime"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
 	controller "go.opentelemetry.io/otel/sdk/metric/controller/basic"
@@ -82,19 +85,14 @@ func initProfiling(serviceName string, serviceVersion string, projectID string) 
 }
 
 func initMetrics(projectID string) (func(), error) {
-	opts := []mexporter.Option{
-		mexporter.WithProjectID(projectID),
-		mexporter.WithOnError(func(err error) {
-			logrus.WithError(err).Warn("Metric exporter reported error.")
-		}),
-	}
-
-	popts := []controller.Option{}
-
-	pusher, err := mexporter.InstallNewPipeline(opts, popts...)
+	pusher, err := initMetricsPipeline(projectID)
 
 	if err != nil {
-		return nil, fmt.Errorf("could not install metrics pipeline: %w", err)
+		return nil, err
+	}
+
+	if err := initEnvironmentMetricsInstrumentation(); err != nil {
+		return nil, err
 	}
 
 	return func() {
@@ -106,6 +104,39 @@ func initMetrics(projectID string) (func(), error) {
 
 		logrus.Info("Flushing complete.")
 	}, nil
+}
+
+func initMetricsPipeline(projectID string) (*controller.Controller, error) {
+	opts := []mexporter.Option{
+		mexporter.WithProjectID(projectID),
+		mexporter.WithOnError(func(err error) {
+			logrus.WithError(err).Warn("Metric exporter reported error.")
+		}),
+	}
+
+	controllerOpts := []controller.Option{
+		controller.WithPushTimeout(30 * time.Second),
+	}
+
+	pusher, err := mexporter.InstallNewPipeline(opts, controllerOpts...)
+
+	if err != nil {
+		return nil, fmt.Errorf("could not install metrics pipeline: %w", err)
+	}
+
+	return pusher, nil
+}
+
+func initEnvironmentMetricsInstrumentation() error {
+	if err := runtime.Start(); err != nil {
+		return fmt.Errorf("could not start collecting runtime metrics: %w", err)
+	}
+
+	if err := host.Start(); err != nil {
+		return fmt.Errorf("could not start collecting host metrics: %w", err)
+	}
+
+	return nil
 }
 
 func initTracing(projectID string) (func(), error) {
