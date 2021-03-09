@@ -15,6 +15,7 @@
 package testutils
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/batect/service-observability/middleware"
@@ -22,7 +23,13 @@ import (
 )
 
 func RequestWithTestLogger(req *http.Request) (*http.Request, *test.Hook) {
+	ctx, hook := ContextWithTestLogger(req.Context())
+
+	return req.WithContext(ctx), hook
+}
+
+func ContextWithTestLogger(ctx context.Context) (context.Context, *test.Hook) {
 	logger, hook := test.NewNullLogger()
 
-	return req.WithContext(middleware.ContextWithLogger(req.Context(), logger)), hook
+	return middleware.ContextWithLogger(ctx, logger), hook
 }
