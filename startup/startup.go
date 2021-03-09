@@ -35,6 +35,7 @@ import (
 
 func InitialiseObservability(serviceName string, serviceVersion string, projectID string) (func(), error) {
 	initLogging(serviceName, serviceVersion)
+	otel.SetErrorHandler(&errorHandler{})
 
 	if err := initProfiling(serviceName, serviceVersion, projectID); err != nil {
 		return nil, err
@@ -138,4 +139,10 @@ func initTracing(projectID string) (func(), error) {
 		flush()
 		logrus.Info("Flushing complete.")
 	}, nil
+}
+
+type errorHandler struct{}
+
+func (e *errorHandler) Handle(err error) {
+	logrus.WithError(err).Warn("OpenTelemetry reported error.")
 }
