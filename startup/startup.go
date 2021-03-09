@@ -15,10 +15,12 @@
 package startup
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 
 	"cloud.google.com/go/profiler"
+	mexporter "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric"
 	texporter "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace"
 	"github.com/batect/service-observability/propagators"
 	"github.com/batect/service-observability/tracing"
@@ -27,6 +29,7 @@ import (
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
+	controller "go.opentelemetry.io/otel/sdk/metric/controller/basic"
 	"go.opentelemetry.io/otel/sdk/trace"
 )
 
@@ -37,7 +40,22 @@ func InitialiseObservability(serviceName string, serviceVersion string, projectI
 		return nil, err
 	}
 
-	return initTracing(projectID)
+	flushMetrics, err := initMetrics(projectID)
+
+	if err != nil {
+		return nil, err
+	}
+
+	flushTraces, err := initTracing(projectID)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return func() {
+		flushMetrics()
+		flushTraces()
+	}, nil
 }
 
 func initLogging(serviceName string, serviceVersion string) {
@@ -60,6 +78,33 @@ func initProfiling(serviceName string, serviceVersion string, projectID string) 
 	}
 
 	return nil
+}
+
+func initMetrics(projectID string) (func(), error) {
+	opts := []mexporter.Option{
+		mexporter.WithProjectID(projectID),
+		mexporter.WithOnError(func(err error) {
+			logrus.WithError(err).Warn("Metric exporter reported error.")
+		}),
+	}
+
+	popts := []controller.Option{}
+
+	pusher, err := mexporter.InstallNewPipeline(opts, popts...)
+
+	if err != nil {
+		return nil, fmt.Errorf("could not install metrics pipeline: %w", err)
+	}
+
+	return func() {
+		logrus.Info("Flushing metrics...")
+
+		if err := pusher.Stop(context.Background()); err != nil {
+			logrus.WithError(err).Warn("Flushing metrics failed.")
+		}
+
+		logrus.Info("Flushing complete.")
+	}, nil
 }
 
 func initTracing(projectID string) (func(), error) {
