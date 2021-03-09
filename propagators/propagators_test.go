@@ -22,6 +22,7 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"go.opentelemetry.io/otel/oteltest"
+	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -38,7 +39,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 
 			BeforeEach(func() {
 				headers := http.Header{}
-				ctx := propagator.Extract(originalContext, headers)
+				ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
 				spanContext = trace.RemoteSpanContextFromContext(ctx)
 			})
 
@@ -55,7 +56,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 					"X-Cloud-Trace-Context": {"105445aa7843bc8bf206b12000100000/18374686479671623803"},
 				}
 
-				ctx := propagator.Extract(originalContext, headers)
+				ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
 				spanContext = trace.RemoteSpanContextFromContext(ctx)
 			})
 
@@ -75,7 +76,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 					"X-Cloud-Trace-Context": {"105445aa7843bc8bf206b12000100000/123"},
 				}
 
-				ctx := propagator.Extract(originalContext, headers)
+				ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
 				spanContext = trace.RemoteSpanContextFromContext(ctx)
 			})
 
@@ -95,7 +96,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 					"X-Cloud-Trace-Context": {"105445aa7843bc8bf206b12000100000/18374686479671623803;o=0"},
 				}
 
-				ctx := propagator.Extract(originalContext, headers)
+				ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
 				spanContext = trace.RemoteSpanContextFromContext(ctx)
 			})
 
@@ -115,7 +116,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 					"X-Cloud-Trace-Context": {"105445aa7843bc8bf206b12000100000/18374686479671623803;o=1"},
 				}
 
-				ctx := propagator.Extract(originalContext, headers)
+				ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
 				spanContext = trace.RemoteSpanContextFromContext(ctx)
 			})
 
@@ -152,7 +153,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 						"X-Cloud-Trace-Context": {headerValue},
 					}
 
-					ctx := propagator.Extract(originalContext, headers)
+					ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
 					spanContext = trace.RemoteSpanContextFromContext(ctx)
 				})
 
@@ -178,7 +179,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 
 			tracer := oteltest.NewTracerProvider(oteltest.WithSpanContextFunc(traceGenerator)).Tracer("Tracer")
 			ctx, _ := tracer.Start(context.Background(), "Test trace")
-			propagator.Inject(ctx, headers)
+			propagator.Inject(ctx, propagation.HeaderCarrier(headers))
 		})
 
 		It("adds a X-Cloud-Trace-Context header with the trace ID and span ID", func() {
