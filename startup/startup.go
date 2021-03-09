@@ -33,7 +33,9 @@ import (
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
 	controller "go.opentelemetry.io/otel/sdk/metric/controller/basic"
+	"go.opentelemetry.io/otel/sdk/resource"
 	"go.opentelemetry.io/otel/sdk/trace"
+	"go.opentelemetry.io/otel/semconv"
 )
 
 func InitialiseObservability(serviceName string, serviceVersion string, projectID string) (func(), error) {
@@ -44,13 +46,18 @@ func InitialiseObservability(serviceName string, serviceVersion string, projectI
 		return nil, err
 	}
 
-	flushMetrics, err := initMetrics(projectID)
+	resources := resource.NewWithAttributes(
+		semconv.ServiceNameKey.String(serviceName),
+		semconv.ServiceVersionKey.String(serviceVersion),
+	)
+
+	flushMetrics, err := initMetrics(projectID, resources)
 
 	if err != nil {
 		return nil, err
 	}
 
-	flushTraces, err := initTracing(projectID)
+	flushTraces, err := initTracing(projectID, resources)
 
 	if err != nil {
 		return nil, err
@@ -84,8 +91,8 @@ func initProfiling(serviceName string, serviceVersion string, projectID string) 
 	return nil
 }
 
-func initMetrics(projectID string) (func(), error) {
-	pusher, err := initMetricsPipeline(projectID)
+func initMetrics(projectID string, resources *resource.Resource) (func(), error) {
+	pusher, err := initMetricsPipeline(projectID, resources)
 
 	if err != nil {
 		return nil, err
@@ -106,7 +113,7 @@ func initMetrics(projectID string) (func(), error) {
 	}, nil
 }
 
-func initMetricsPipeline(projectID string) (*controller.Controller, error) {
+func initMetricsPipeline(projectID string, resources *resource.Resource) (*controller.Controller, error) {
 	opts := []mexporter.Option{
 		mexporter.WithProjectID(projectID),
 		mexporter.WithOnError(func(err error) {
@@ -116,6 +123,7 @@ func initMetricsPipeline(projectID string) (*controller.Controller, error) {
 
 	controllerOpts := []controller.Option{
 		controller.WithPushTimeout(30 * time.Second),
+		controller.WithResource(resources),
 	}
 
 	pusher, err := mexporter.InstallNewPipeline(opts, controllerOpts...)
@@ -139,7 +147,7 @@ func initEnvironmentMetricsInstrumentation() error {
 	return nil
 }
 
-func initTracing(projectID string) (func(), error) {
+func initTracing(projectID string, resources *resource.Resource) (func(), error) {
 	_, flush, err := texporter.InstallNewPipeline(
 		[]texporter.Option{
 			texporter.WithProjectID(projectID),
@@ -148,6 +156,7 @@ func initTracing(projectID string) (func(), error) {
 			}),
 		},
 		trace.WithConfig(trace.Config{DefaultSampler: trace.AlwaysSample()}),
+		trace.WithResource(resources),
 	)
 
 	if err != nil {
