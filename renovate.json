@@ -29,6 +29,25 @@
         "google.golang.org/api"
       ],
       "automerge": true
+    },
+    {
+      "matchManagers": ["regex"],
+      "matchPackageNames": ["golangci/golangci-lint"],
+      "extractVersion": "^v(?<version>.*)$",
+      "fileMatch": ["(^|/)Dockerfile$"],
+      "automerge": true
+    }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "(^|/)Dockerfile$"
+      ],
+      "matchStrings": [
+        "ARG GOLANGCI_LINT_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "golangci/golangci-lint",
+      "datasourceTemplate": "github-releases"
     }
   ]
 }
