@@ -39,12 +39,8 @@ cloud.google.com/go/storage v1.10.0/go.mod h1:FLPqc6j+Ki4BU591ie1oL6qBQGu2Bl/tZ9
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.17.1-0.20210308202401-8aa889a7f9a8 h1:Pa5gBdeSwtZ0S+kpnl+SQ3k7LeDto34GvwzuTI5usbc=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.17.1-0.20210308202401-8aa889a7f9a8/go.mod h1:rT82P2z/sEuYcXDypvbMxU+Jot7G7Ne97ZAIMrfQ8CM=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.18.0 h1:+BOowr29uW7O9VzHMqvaLMdbxgLX7rC6aVEQ8FnllKw=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.18.0/go.mod h1:rT82P2z/sEuYcXDypvbMxU+Jot7G7Ne97ZAIMrfQ8CM=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v0.17.1-0.20210308202401-8aa889a7f9a8 h1:gHksY4jz5gpkxDUlhG6pOlXpYqLJrydOcQfKCgJUtj8=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v0.17.1-0.20210308202401-8aa889a7f9a8/go.mod h1:BwNb4IGRRblD5OF65ceYU/6zvxGPOZo0M3MJIAfP7+A=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v0.18.0 h1:S03lqrxJv50b/VfvZqI8Jshw2kQOj7y9SeK/P1UxKCo=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v0.18.0/go.mod h1:BwNb4IGRRblD5OF65ceYU/6zvxGPOZo0M3MJIAfP7+A=
 github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d h1:G0m3OIz70MZUWq3EgK3CesDbo8upS2Vm9/P3FtgI+Jk=
@@ -161,8 +157,6 @@ github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORN
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0 h1:45sCR5RtlFHMR4UwH9sdQ5TC8v0qDQCHnXt+kaKSTVE=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
-github.com/magefile/mage v1.10.0 h1:3HiXzCUY12kh9bIuyXShaVe529fJfyqoVM42o/uom2g=
-github.com/magefile/mage v1.10.0/go.mod h1:z5UZb/iS3GoOSn0JgWuiw7dxlurVYTu+/jHXqQg881A=
 github.com/nxadm/tail v1.4.4/go.mod h1:kenIhsEOeOJmVchQTgglprH7qJGnHDVpk1VPCcaMI8A=
 github.com/nxadm/tail v1.4.8 h1:nPr65rt6Y5JFSKQO7qToXr7pePgD6Gwiw05lkbyAQTE=
 github.com/nxadm/tail v1.4.8/go.mod h1:+ncqLTQzXmGhMZNUePPaPqPvBxHAIsmXswZKocGu+AU=
@@ -181,8 +175,7 @@ github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFR
 github.com/shirou/gopsutil v2.20.9+incompatible h1:msXs2frUV+O/JLva9EDLpuJ84PrFsdCTCQex8PUdtkQ=
 github.com/shirou/gopsutil v2.20.9+incompatible/go.mod h1:5b4v6he4MtMOwMlS0TUMTu2PcXUg8+E1lC7eC3UO/RA=
 github.com/sirupsen/logrus v1.2.0/go.mod h1:LxeOpSwHxABJmUn/MG1IvRgCAasNZTLOkJPxbbu5VWo=
-github.com/sirupsen/logrus v1.8.0 h1:nfhvjKcUMhBMVqbKHJlk5RPrrfYr/NMo3692g0dwfWU=
-github.com/sirupsen/logrus v1.8.0/go.mod h1:4GuYW9TZmE769R5STWrRakJc4UqQ3+QQ95fyz7ENv1A=
+github.com/sirupsen/logrus v1.8.1 h1:dJKuHgqk1NNQlqoA6BTlM1Wf9DOH3NBjQyu0h9+AZZE=
 github.com/sirupsen/logrus v1.8.1/go.mod h1:yWOB1SBYBC5VeMP7gHvWumXLIWorT60ONWic61uBYv0=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.1.1/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
