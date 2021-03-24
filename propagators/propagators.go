@@ -31,9 +31,8 @@ type GCPPropagator struct{}
 
 func (c GCPPropagator) Extract(ctx context.Context, carrier propagation.TextMapCarrier) context.Context {
 	headerValue := carrier.Get(headerName)
-	sc := c.extractSpanContext(headerValue)
 
-	if sc.IsValid() {
+	if ok, sc := c.extractSpanContext(headerValue); ok {
 		return trace.ContextWithRemoteSpanContext(ctx, sc)
 	}
 
@@ -42,24 +41,24 @@ func (c GCPPropagator) Extract(ctx context.Context, carrier propagation.TextMapC
 
 // See https://cloud.google.com/trace/docs/setup#force-trace for a description of the X-Cloud-Trace-Context header,
 // and https://github.com/census-ecosystem/opencensus-go-exporter-stackdriver/blob/master/propagation/http.go for the OpenCensus implementation.
-func (c GCPPropagator) extractSpanContext(headerValue string) trace.SpanContext {
+func (c GCPPropagator) extractSpanContext(headerValue string) (bool, trace.SpanContext) {
 	regex := regexp.MustCompile(`^([\da-fA-F]{32})/(\d+)(?:;o=([01]))?$`)
 	segments := regex.FindStringSubmatch(headerValue)
 
 	if segments == nil {
-		return trace.SpanContext{}
+		return false, trace.SpanContext{}
 	}
 
 	tid, err := trace.TraceIDFromHex(segments[1])
 
 	if err != nil {
-		return trace.SpanContext{}
+		return false, trace.SpanContext{}
 	}
 
 	sid, err := strconv.ParseUint(segments[2], 10, 64)
 
 	if err != nil {
-		return trace.SpanContext{}
+		return false, trace.SpanContext{}
 	}
 
 	sidBytes := trace.SpanID{}
@@ -71,17 +70,18 @@ func (c GCPPropagator) extractSpanContext(headerValue string) trace.SpanContext 
 		flags = trace.FlagsSampled
 	}
 
-	return trace.SpanContext{
+	return true, trace.NewSpanContext(trace.SpanContextConfig{
 		TraceID:    tid,
 		SpanID:     sidBytes,
 		TraceFlags: flags,
-	}
+	})
 }
 
 func (c GCPPropagator) Inject(ctx context.Context, carrier propagation.TextMapCarrier) {
 	sc := trace.SpanFromContext(ctx).SpanContext()
-	sid := binary.BigEndian.Uint64(sc.SpanID[:])
-	headerValue := fmt.Sprintf("%v/%v", sc.TraceID.String(), sid)
+	spanID := sc.SpanID()
+	sid := binary.BigEndian.Uint64(spanID[:])
+	headerValue := fmt.Sprintf("%v/%v", sc.TraceID().String(), sid)
 
 	if sc.IsSampled() {
 		headerValue += ";o=1"

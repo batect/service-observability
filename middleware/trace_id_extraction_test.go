@@ -65,7 +65,7 @@ var _ = Describe("Trace ID extraction middleware", func() {
 
 func addTraceToRequest(req *http.Request) (*http.Request, string) {
 	ctx, span := oteltest.NewTracerProvider().Tracer("Tracer").Start(req.Context(), "My test span")
-	traceID := span.SpanContext().TraceID.String()
+	traceID := span.SpanContext().TraceID().String()
 	req = req.WithContext(ctx)
 
 	return req, traceID

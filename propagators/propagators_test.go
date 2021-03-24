@@ -31,7 +31,11 @@ var _ = Describe("A GCP tracing propagator", func() {
 	propagator := propagators.GCPPropagator{}
 
 	Context("when processing incoming requests", func() {
-		originalSpanContext := trace.SpanContext{TraceID: [16]byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, SpanID: [8]byte{1, 2, 3, 4, 5, 6, 7, 8}}
+		originalSpanContext := trace.NewSpanContext(trace.SpanContextConfig{
+			TraceID: [16]byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},
+			SpanID:  [8]byte{1, 2, 3, 4, 5, 6, 7, 8},
+			Remote:  true,
+		})
 		originalContext := trace.ContextWithRemoteSpanContext(context.Background(), originalSpanContext)
 
 		Context("given no X-Cloud-Trace-Context header", func() {
@@ -61,10 +65,11 @@ var _ = Describe("A GCP tracing propagator", func() {
 			})
 
 			It("returns a span context with the trace and span ID extracted from the header", func() {
-				Expect(spanContext).To(Equal(trace.SpanContext{
+				Expect(spanContext).To(Equal(trace.NewSpanContext(trace.SpanContextConfig{
 					TraceID: [16]byte{16, 84, 69, 170, 120, 67, 188, 139, 242, 6, 177, 32, 0, 16, 0, 0},
 					SpanID:  [8]byte{255, 0, 0, 0, 0, 0, 0, 123},
-				}))
+					Remote:  true,
+				})))
 			})
 		})
 
@@ -81,10 +86,11 @@ var _ = Describe("A GCP tracing propagator", func() {
 			})
 
 			It("returns a span context with the trace and span ID extracted from the header", func() {
-				Expect(spanContext).To(Equal(trace.SpanContext{
+				Expect(spanContext).To(Equal(trace.NewSpanContext(trace.SpanContextConfig{
 					TraceID: [16]byte{16, 84, 69, 170, 120, 67, 188, 139, 242, 6, 177, 32, 0, 16, 0, 0},
 					SpanID:  [8]byte{0, 0, 0, 0, 0, 0, 0, 123},
-				}))
+					Remote:  true,
+				})))
 			})
 		})
 
@@ -101,10 +107,11 @@ var _ = Describe("A GCP tracing propagator", func() {
 			})
 
 			It("returns a span context with the trace and span ID extracted from the header and no trace flags", func() {
-				Expect(spanContext).To(Equal(trace.SpanContext{
+				Expect(spanContext).To(Equal(trace.NewSpanContext(trace.SpanContextConfig{
 					TraceID: [16]byte{16, 84, 69, 170, 120, 67, 188, 139, 242, 6, 177, 32, 0, 16, 0, 0},
 					SpanID:  [8]byte{255, 0, 0, 0, 0, 0, 0, 123},
-				}))
+					Remote:  true,
+				})))
 			})
 		})
 
@@ -121,11 +128,12 @@ var _ = Describe("A GCP tracing propagator", func() {
 			})
 
 			It("returns a span context with the trace and span ID extracted from the header and the appropriate trace flag to enable tracing", func() {
-				Expect(spanContext).To(Equal(trace.SpanContext{
+				Expect(spanContext).To(Equal(trace.NewSpanContext(trace.SpanContextConfig{
 					TraceID:    [16]byte{16, 84, 69, 170, 120, 67, 188, 139, 242, 6, 177, 32, 0, 16, 0, 0},
 					SpanID:     [8]byte{255, 0, 0, 0, 0, 0, 0, 123},
 					TraceFlags: trace.FlagsSampled,
-				}))
+					Remote:     true,
+				})))
 			})
 		})
 
@@ -171,10 +179,10 @@ var _ = Describe("A GCP tracing propagator", func() {
 			headers = http.Header{}
 
 			traceGenerator := func(ctx context.Context) trace.SpanContext {
-				return trace.SpanContext{
+				return trace.NewSpanContext(trace.SpanContextConfig{
 					TraceID: [16]byte{16, 84, 69, 170, 120, 67, 188, 139, 242, 6, 177, 32, 0, 16, 0, 0},
 					SpanID:  [8]byte{255, 0, 0, 0, 0, 0, 0, 123},
-				}
+				})
 			}
 
 			tracer := oteltest.NewTracerProvider(oteltest.WithSpanContextFunc(traceGenerator)).Tracer("Tracer")
