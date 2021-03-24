@@ -155,7 +155,7 @@ func initTracing(projectID string, resources *resource.Resource) (func(), error)
 				logrus.WithError(err).Warn("Trace exporter reported error.")
 			}),
 		},
-		trace.WithConfig(trace.Config{DefaultSampler: trace.AlwaysSample()}),
+		trace.WithSampler(trace.AlwaysSample()),
 		trace.WithResource(resources),
 	)
 
