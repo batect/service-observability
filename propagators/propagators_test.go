@@ -44,7 +44,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 			BeforeEach(func() {
 				headers := http.Header{}
 				ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
-				spanContext = trace.RemoteSpanContextFromContext(ctx)
+				spanContext = trace.SpanContextFromContext(ctx)
 			})
 
 			It("does not modify the span context on the context", func() {
@@ -61,7 +61,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 				}
 
 				ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
-				spanContext = trace.RemoteSpanContextFromContext(ctx)
+				spanContext = trace.SpanContextFromContext(ctx)
 			})
 
 			It("returns a span context with the trace and span ID extracted from the header", func() {
@@ -82,7 +82,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 				}
 
 				ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
-				spanContext = trace.RemoteSpanContextFromContext(ctx)
+				spanContext = trace.SpanContextFromContext(ctx)
 			})
 
 			It("returns a span context with the trace and span ID extracted from the header", func() {
@@ -103,7 +103,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 				}
 
 				ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
-				spanContext = trace.RemoteSpanContextFromContext(ctx)
+				spanContext = trace.SpanContextFromContext(ctx)
 			})
 
 			It("returns a span context with the trace and span ID extracted from the header and no trace flags", func() {
@@ -124,7 +124,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 				}
 
 				ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
-				spanContext = trace.RemoteSpanContextFromContext(ctx)
+				spanContext = trace.SpanContextFromContext(ctx)
 			})
 
 			It("returns a span context with the trace and span ID extracted from the header and the appropriate trace flag to enable tracing", func() {
@@ -162,7 +162,7 @@ var _ = Describe("A GCP tracing propagator", func() {
 					}
 
 					ctx := propagator.Extract(originalContext, propagation.HeaderCarrier(headers))
-					spanContext = trace.RemoteSpanContextFromContext(ctx)
+					spanContext = trace.SpanContextFromContext(ctx)
 				})
 
 				It("does not modify the span context on the context", func() {
