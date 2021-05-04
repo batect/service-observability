@@ -64,10 +64,10 @@ func (c GCPPropagator) extractSpanContext(headerValue string) (bool, trace.SpanC
 	sidBytes := trace.SpanID{}
 	binary.BigEndian.PutUint64(sidBytes[:], sid)
 
-	flags := byte(0)
+	flags := trace.TraceFlags(0)
 
 	if segments[3] == "1" {
-		flags = trace.FlagsSampled
+		flags = flags.WithSampled(true)
 	}
 
 	return true, trace.NewSpanContext(trace.SpanContextConfig{
