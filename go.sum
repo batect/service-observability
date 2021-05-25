@@ -55,10 +55,14 @@ github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.19
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.19.0/go.mod h1:Q5V88hjYcJe6ui5J82DMAi03KuNihRJom39u94nFa8c=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.20.0 h1:H4Hs0jLf0IcQ96dgx3gPFRke2zyjrzpYMecVsrWKrAc=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.20.0/go.mod h1:3DfYfW/GJ2p+Yd1vGImcFO1jKaqvZmAMMIdWk8BJsjw=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.20.1 h1:K6M7F6qeNMgUERKXMOeS/aRdCrpAY8t219iELV0dc0o=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.20.1/go.mod h1:3DfYfW/GJ2p+Yd1vGImcFO1jKaqvZmAMMIdWk8BJsjw=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v0.19.0 h1:a9AKBLRTy24FqoP/t43jhD4bvHvF1+J/AMk5/ow0oDQ=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v0.19.0/go.mod h1:QReo6rLpUfhX+elWBG+jO+b02a59EDInsz0fGy7w0cE=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v0.20.0 h1:ExGRyJwOUijAPv/RzCJ3p1CNUxBQGzVO238m1lFjLS4=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v0.20.0/go.mod h1:f4BFp2+kV6s/OKj3IP/34keB/OE7tTTaZZQyX/mQ7Ng=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v0.20.1 h1:b+IF0z5KKs9pEXtPb3gic80fTotTOdiTzg+EfsKv7l4=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v0.20.1/go.mod h1:f4BFp2+kV6s/OKj3IP/34keB/OE7tTTaZZQyX/mQ7Ng=
 github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d h1:G0m3OIz70MZUWq3EgK3CesDbo8upS2Vm9/P3FtgI+Jk=
 github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d/go.mod h1:3eOhrUMpNV+6aFIbp5/iudMxNCF27Vw2OZgy4xEx0Fg=
 github.com/TV4/logrus-stackdriver-formatter v0.1.0 h1:nFea8RiX7ecTnWPM+9FIqwZYJdcGo58CHMGIVdYzMXg=
