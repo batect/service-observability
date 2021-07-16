@@ -47,6 +47,7 @@ func InitialiseObservability(serviceName string, serviceVersion string, projectI
 	}
 
 	resources := resource.NewWithAttributes(
+		semconv.SchemaURL,
 		semconv.ServiceNameKey.String(serviceName),
 		semconv.ServiceVersionKey.String(serviceVersion),
 	)
