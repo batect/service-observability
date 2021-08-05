@@ -149,16 +149,15 @@ func initEnvironmentMetricsInstrumentation() error {
 }
 
 func initTracing(projectID string, resources *resource.Resource) (func(), error) {
-	_, flush, err := texporter.InstallNewPipeline(
-		[]texporter.Option{
-			texporter.WithProjectID(projectID),
-			texporter.WithOnError(func(err error) {
-				logrus.WithError(err).Warn("Trace exporter reported error.")
-			}),
-		},
+	exporter, err := texporter.New(texporter.WithProjectID(projectID))
+
+	provider := trace.NewTracerProvider(
+		trace.WithBatcher(exporter),
 		trace.WithSampler(trace.AlwaysSample()),
 		trace.WithResource(resources),
 	)
+
+	otel.SetTracerProvider(provider)
 
 	if err != nil {
 		return nil, fmt.Errorf("could not install tracing pipeline: %w", err)
@@ -177,7 +176,11 @@ func initTracing(projectID string, resources *resource.Resource) (func(), error)
 
 	return func() {
 		logrus.Info("Flushing remaining traces...")
-		flush()
+
+		if err := provider.Shutdown(context.Background()); err != nil {
+			logrus.WithError(err).Warning("Shutting down tracing provider failed with error.")
+		}
+
 		logrus.Info("Flushing complete.")
 	}, nil
 }
