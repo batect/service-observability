@@ -3,7 +3,7 @@ module github.com/batect/service-observability
 go 1.16
 
 require (
-	cloud.google.com/go v0.92.0
+	cloud.google.com/go v0.92.1
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.22.0
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.0.0-RC2
 	github.com/charleskorn/logrus-stackdriver-formatter v0.3.1
