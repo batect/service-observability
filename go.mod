@@ -3,7 +3,8 @@ module github.com/batect/service-observability
 go 1.16
 
 require (
-	cloud.google.com/go v0.92.2
+	cloud.google.com/go v0.93.3
+	cloud.google.com/go/monitoring v0.1.0 // indirect
 	cloud.google.com/go/profiler v0.1.0
 	cloud.google.com/go/trace v0.1.0 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.22.0
