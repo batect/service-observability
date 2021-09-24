@@ -21,8 +21,8 @@ import (
 	"github.com/batect/service-observability/propagators"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"go.opentelemetry.io/otel/oteltest"
 	"go.opentelemetry.io/otel/propagation"
+	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -178,14 +178,13 @@ var _ = Describe("A GCP tracing propagator", func() {
 		BeforeEach(func() {
 			headers = http.Header{}
 
-			traceGenerator := func(ctx context.Context) trace.SpanContext {
-				return trace.NewSpanContext(trace.SpanContextConfig{
-					TraceID: [16]byte{16, 84, 69, 170, 120, 67, 188, 139, 242, 6, 177, 32, 0, 16, 0, 0},
-					SpanID:  [8]byte{255, 0, 0, 0, 0, 0, 0, 123},
-				})
+			idGenerator := dummyIDGenerator{
+				traceID: [16]byte{16, 84, 69, 170, 120, 67, 188, 139, 242, 6, 177, 32, 0, 16, 0, 0},
+				spanID:  [8]byte{255, 0, 0, 0, 0, 0, 0, 123},
 			}
 
-			tracer := oteltest.NewTracerProvider(oteltest.WithSpanContextFunc(traceGenerator)).Tracer("Tracer")
+			provider := sdktrace.NewTracerProvider(sdktrace.WithIDGenerator(idGenerator))
+			tracer := provider.Tracer("Tracer")
 			ctx, _ := tracer.Start(context.Background(), "Test trace")
 			propagator.Inject(ctx, propagation.HeaderCarrier(headers))
 		})
@@ -195,3 +194,18 @@ var _ = Describe("A GCP tracing propagator", func() {
 		})
 	})
 })
+
+type dummyIDGenerator struct {
+	traceID [16]byte
+	spanID [8]byte
+}
+
+func (d dummyIDGenerator) NewIDs(ctx context.Context) (trace.TraceID, trace.SpanID) {
+	return d.traceID, d.spanID
+}
+
+func (d dummyIDGenerator) NewSpanID(ctx context.Context, traceID trace.TraceID) trace.SpanID {
+	panic("not supported")
+}
+
+
