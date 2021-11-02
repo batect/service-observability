@@ -28,6 +28,9 @@
         "github.com/onsi/gomega",
         "google.golang.org/api"
       ],
+      "matchPackagePatterns": [
+        "^cloud.google.com/go/"
+      ],
       "automerge": true
     },
     {
