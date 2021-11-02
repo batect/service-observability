@@ -14,11 +14,11 @@ require (
 	github.com/onsi/ginkgo v1.16.4
 	github.com/onsi/gomega v1.16.0
 	github.com/sirupsen/logrus v1.8.1
-	go.opentelemetry.io/contrib/instrumentation/host v0.21.0
-	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.24.0
-	go.opentelemetry.io/contrib/instrumentation/runtime v0.21.0
-	go.opentelemetry.io/otel v1.0.1
-	go.opentelemetry.io/otel/sdk v1.0.1
+	go.opentelemetry.io/contrib/instrumentation/host v0.26.0
+	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.26.0
+	go.opentelemetry.io/contrib/instrumentation/runtime v0.26.0
+	go.opentelemetry.io/otel v1.1.0
+	go.opentelemetry.io/otel/sdk v1.1.0
 	go.opentelemetry.io/otel/sdk/metric v0.24.0
-	go.opentelemetry.io/otel/trace v1.0.1
+	go.opentelemetry.io/otel/trace v1.1.0
 )
