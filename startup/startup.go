@@ -23,7 +23,7 @@ import (
 	"cloud.google.com/go/profiler"
 	mexporter "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric"
 	texporter "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace"
-	"github.com/batect/service-observability/propagators"
+	gcppropagator "github.com/GoogleCloudPlatform/opentelemetry-operations-go/propagator"
 	"github.com/batect/service-observability/tracing"
 	stackdriver "github.com/charleskorn/logrus-stackdriver-formatter"
 	"github.com/sirupsen/logrus"
@@ -164,7 +164,7 @@ func initTracing(projectID string, resources *resource.Resource) (func(), error)
 	}
 
 	w3Propagator := propagation.TraceContext{}
-	gcpPropagator := propagators.GCPPropagator{}
+	gcpPropagator := gcppropagator.New()
 
 	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(w3Propagator, gcpPropagator))
 
