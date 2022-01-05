@@ -15,9 +15,10 @@
 package tracing_test
 
 import (
+	"testing"
+
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"testing"
 )
 
 func TestCmd(t *testing.T) {
