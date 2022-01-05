@@ -20,10 +20,9 @@ import (
 	"net/http/httptest"
 
 	"github.com/batect/service-observability/middleware"
-	sdktrace "go.opentelemetry.io/otel/sdk/trace"
-
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 )
 
 // Based on https://cloud.google.com/run/docs/logging#writing_structured_logs and
