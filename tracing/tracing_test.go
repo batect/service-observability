@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Charles Korn.
+// Copyright 2019-2022 Charles Korn.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,8 +18,6 @@ import (
 	"net/http/httptest"
 
 	"github.com/batect/service-observability/tracing"
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
 )
 
 var _ = Describe("Naming HTTP request spans", func() {

@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Charles Korn.
+// Copyright 2019-2022 Charles Korn.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,9 +16,6 @@ package middleware_test
 
 import (
 	"testing"
-
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
 )
 
 func TestCmd(t *testing.T) {

@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Charles Korn.
+// Copyright 2019-2022 Charles Korn.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@ import (
 	"strings"
 
 	"github.com/batect/service-observability/middleware"
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
 	"github.com/sirupsen/logrus"
 	"github.com/sirupsen/logrus/hooks/test"
 )
