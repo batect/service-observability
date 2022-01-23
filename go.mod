@@ -12,8 +12,7 @@ require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.0.1-0.20211028185624-0b6d88719596
 	github.com/charleskorn/logrus-stackdriver-formatter v0.3.1
 	github.com/google/uuid v1.3.0
-	github.com/onsi/ginkgo v1.16.5
-	github.com/onsi/gomega v1.17.0
+	github.com/onsi/gomega v1.18.0
 	github.com/sirupsen/logrus v1.8.1
 	go.opentelemetry.io/contrib/instrumentation/host v0.26.1
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.26.1
@@ -24,6 +23,8 @@ require (
 	go.opentelemetry.io/otel/trace v1.1.0
 )
 
+require github.com/onsi/ginkgo/v2 v2.0.0
+
 require (
 	github.com/StackExchange/wmi v1.2.1 // indirect
 	github.com/census-instrumentation/opencensus-proto v0.2.1 // indirect
@@ -33,7 +34,6 @@ require (
 	github.com/envoyproxy/go-control-plane v0.9.9-0.20210512163311-63b5d3c536b0 // indirect
 	github.com/envoyproxy/protoc-gen-validate v0.1.0 // indirect
 	github.com/felixge/httpsnoop v1.0.2 // indirect
-	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-ole/go-ole v1.2.5 // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0 // indirect
@@ -42,7 +42,6 @@ require (
 	github.com/google/go-cmp v0.5.6 // indirect
 	github.com/google/pprof v0.0.0-20211214055906-6f57359322fd // indirect
 	github.com/googleapis/gax-go/v2 v2.1.1 // indirect
-	github.com/nxadm/tail v1.4.8 // indirect
 	github.com/shirou/gopsutil/v3 v3.21.9 // indirect
 	github.com/tklauser/go-sysconf v0.3.9 // indirect
 	github.com/tklauser/numcpus v0.3.0 // indirect
@@ -52,7 +51,7 @@ require (
 	go.opentelemetry.io/otel/sdk/export/metric v0.24.0 // indirect
 	golang.org/x/net v0.0.0-20210716203947-853a461950ff // indirect
 	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8 // indirect
-	golang.org/x/sys v0.0.0-20211210111614-af8b64212486 // indirect
+	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	golang.org/x/text v0.3.6 // indirect
 	golang.org/x/tools v0.1.5 // indirect
 	google.golang.org/api v0.63.0 // indirect
@@ -60,6 +59,5 @@ require (
 	google.golang.org/genproto v0.0.0-20211208223120-3a66f561d7aa // indirect
 	google.golang.org/grpc v1.40.1 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
-	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
