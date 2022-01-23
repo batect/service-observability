@@ -23,7 +23,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.1.0
 )
 
-require github.com/onsi/ginkgo/v2 v2.0.0
+require github.com/onsi/ginkgo/v2 v2.1.0
 
 require (
 	github.com/StackExchange/wmi v1.2.1 // indirect
