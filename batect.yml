@@ -24,7 +24,7 @@ tasks:
     group: Setup tasks
     run:
       container: build-env
-      command: sh -c 'go mod download && go install github.com/onsi/ginkgo/ginkgo'
+      command: sh -c 'go mod download && go install github.com/onsi/ginkgo/v2/ginkgo'
 
   build:
     description: Build the library.
@@ -38,14 +38,14 @@ tasks:
     group: Test tasks
     run:
       container: build-env
-      command: ginkgo --regexScansFilePath --skip='_integration_test.go$' -race -coverprofile=coverage.txt -covermode=atomic ./...
+      command: ginkgo --skip-file='_integration_test.go$' -race -coverprofile=coverage.txt -covermode=atomic ./...
 
   continuousUnitTest:
     description: Run the unit tests, and re-run them when any code changes are detected.
     group: Test tasks
     run:
       container: build-env
-      command: ginkgo watch --regexScansFilePath --skip='_integration_test.go$' ./...
+      command: ginkgo watch --skip-file='_integration_test.go$' ./...
 
   shell:
     description: Start a shell in the development environment.

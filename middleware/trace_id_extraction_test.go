@@ -20,7 +20,7 @@ import (
 	"net/http/httptest"
 
 	"github.com/batect/service-observability/middleware"
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 )
