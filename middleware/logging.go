@@ -35,6 +35,7 @@ func ContextWithLogger(ctx context.Context, logger logrus.FieldLogger) context.C
 }
 
 func LoggerFromContext(ctx context.Context) logrus.FieldLogger {
+	//nolint:forcetypeassert
 	return ctx.Value(loggerKey).(logrus.FieldLogger)
 }
 

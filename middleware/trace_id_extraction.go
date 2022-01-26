@@ -38,6 +38,7 @@ func ContextWithTraceID(ctx context.Context, traceID string) context.Context {
 }
 
 func TraceIDFromContext(ctx context.Context) string {
+	//nolint:forcetypeassert
 	return ctx.Value(traceIDKey).(string)
 }
 
