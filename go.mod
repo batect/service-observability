@@ -12,7 +12,7 @@ require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.3.0
 	github.com/charleskorn/logrus-stackdriver-formatter v0.3.1
 	github.com/google/uuid v1.3.0
-	github.com/onsi/gomega v1.18.1
+	github.com/onsi/gomega v1.19.0
 	github.com/sirupsen/logrus v1.8.1
 	go.opentelemetry.io/contrib/instrumentation/host v0.27.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.28.0
@@ -52,7 +52,7 @@ require (
 	go.opentelemetry.io/otel/internal/metric v0.26.0 // indirect
 	go.opentelemetry.io/otel/metric v0.26.0 // indirect
 	go.opentelemetry.io/otel/sdk/export/metric v0.26.0 // indirect
-	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
+	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
 	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8 // indirect
 	golang.org/x/sys v0.0.0-20220207234003-57398862261d // indirect
 	golang.org/x/text v0.3.7 // indirect
