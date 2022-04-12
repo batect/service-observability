@@ -82,6 +82,8 @@ github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.0.0 h1:P0hYueIjEq6
 github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.0.0/go.mod h1:geb44fAt9lV9fz0j6acdmxMOj+sVDFDXAGpzVtvPUh4=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.3.0 h1:CePlF0i6p4xudiE81RNsUQ8nwS06w8yiRtNdcBHy+vQ=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.3.0/go.mod h1:yqr8oLzRkQMWgpJMHOcPFCWNoL2EMgv0zjb5l7UU7qM=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.4.0 h1:UmrjcWeBz4yHBA+CGvsUc2SRQgoyhKbY0Kpo3wuV4Zw=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.4.0/go.mod h1:lkyoCnkgX2rxsK/qn0l6POhbrqSCuRms1O5UQLlTHvg=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.24.0 h1:N0+FAdwzre72oQi6GPbhgiR5XvRGI5TkCWo1mRv187s=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.24.0/go.mod h1:BTcZKG/1wCSZ6wooVi4eYaJKXn8P8x6fb53P4Cd0pEo=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.26.0 h1:W5wZekY1XeYeGTEakhI1pAZBIIlk71aFYWV/penzLJw=
