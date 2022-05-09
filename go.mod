@@ -23,7 +23,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.6.3
 )
 
-require github.com/onsi/ginkgo/v2 v2.1.3
+require github.com/onsi/ginkgo/v2 v2.1.4
 
 require (
 	cloud.google.com/go/compute v1.5.0 // indirect
@@ -59,7 +59,7 @@ require (
 	golang.org/x/oauth2 v0.0.0-20220309155454-6242fa91716a // indirect
 	golang.org/x/sys v0.0.0-20220328115105-d36c6a25d886 // indirect
 	golang.org/x/text v0.3.7 // indirect
-	golang.org/x/tools v0.1.5 // indirect
+	golang.org/x/tools v0.1.10 // indirect
 	google.golang.org/api v0.74.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20220405205423-9d709892a2bf // indirect
