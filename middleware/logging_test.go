@@ -19,7 +19,7 @@ import (
 	"net/http/httptest"
 	"strings"
 
-	"github.com/batect/service-observability/middleware"
+	"github.com/batect/services-common/middleware"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/sirupsen/logrus"

@@ -1,4 +1,4 @@
-module github.com/batect/service-observability
+module github.com/batect/services-common
 
 go 1.17
 

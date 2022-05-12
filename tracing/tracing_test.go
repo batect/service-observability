@@ -17,7 +17,7 @@ package tracing_test
 import (
 	"net/http/httptest"
 
-	"github.com/batect/service-observability/tracing"
+	"github.com/batect/services-common/tracing"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

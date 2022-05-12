@@ -18,7 +18,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/batect/service-observability/middleware"
+	"github.com/batect/services-common/middleware"
 	"github.com/sirupsen/logrus/hooks/test"
 )
 

@@ -24,7 +24,7 @@ import (
 	mexporter "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric"
 	texporter "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace"
 	gcppropagator "github.com/GoogleCloudPlatform/opentelemetry-operations-go/propagator"
-	"github.com/batect/service-observability/tracing"
+	"github.com/batect/services-common/tracing"
 	stackdriver "github.com/charleskorn/logrus-stackdriver-formatter"
 	"github.com/sirupsen/logrus"
 	"go.opentelemetry.io/contrib/instrumentation/host"
