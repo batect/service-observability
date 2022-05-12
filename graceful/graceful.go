@@ -17,6 +17,7 @@ package graceful
 import (
 	"context"
 	"errors"
+	"fmt"
 	"net/http"
 	"os"
 	"os/signal"
@@ -25,18 +26,20 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func RunServerWithGracefulShutdown(srv *http.Server) {
+func RunServerWithGracefulShutdown(srv *http.Server) error {
 	connectionDrainingFinished := shutdownOnInterrupt(srv)
 
 	logrus.WithField("address", srv.Addr).Info("Server starting.")
 
 	if err := srv.ListenAndServe(); !errors.Is(err, http.ErrServerClosed) {
-		logrus.WithError(err).Fatal("Could not start HTTP server.")
+		return fmt.Errorf("could not start HTTP server: %w", err)
 	}
 
 	<-connectionDrainingFinished
 
 	logrus.Info("Server gracefully stopped.")
+
+	return nil
 }
 
 func shutdownOnInterrupt(srv *http.Server) chan struct{} {
