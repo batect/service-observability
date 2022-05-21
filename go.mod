@@ -25,8 +25,9 @@ require (
 require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.5.1
 	github.com/onsi/ginkgo/v2 v2.1.4
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.7.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.7.0
-	google.golang.org/grpc v1.46.0
+	google.golang.org/grpc v1.46.2
 )
 
 require (
@@ -52,7 +53,6 @@ require (
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.7.0 // indirect
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.7.0 // indirect
 	go.opentelemetry.io/otel/metric v0.29.0 // indirect
 	go.opentelemetry.io/proto/otlp v0.16.0 // indirect
 	golang.org/x/net v0.0.0-20220425223048-2871e0cb64e4 // indirect
