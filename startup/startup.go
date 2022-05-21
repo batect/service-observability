@@ -165,14 +165,14 @@ func createHoneycombExporter(apiKey string) (*otlptrace.Exporter, error) {
 	return otlptrace.New(context.Background(), client)
 }
 
-func initTracing(gcpProjectID string, honeycombApiKey string, resources *resource.Resource) (func(), error) {
+func initTracing(gcpProjectID string, honeycombAPIKey string, resources *resource.Resource) (func(), error) {
 	gcpExporter, err := texporter.New(texporter.WithProjectID(gcpProjectID))
 
 	if err != nil {
 		return nil, fmt.Errorf("could not create GCP tracing exporter: %w", err)
 	}
 
-	honeycombExporter, err := createHoneycombExporter(honeycombApiKey)
+	honeycombExporter, err := createHoneycombExporter(honeycombAPIKey)
 
 	if err != nil {
 		return nil, fmt.Errorf("could not create Honeycomb tracing exporter: %w", err)
