@@ -149,19 +149,19 @@ func initEnvironmentMetricsInstrumentation() error {
 }
 
 func initTracing(projectID string, resources *resource.Resource) (func(), error) {
-	exporter, err := texporter.New(texporter.WithProjectID(projectID))
+	gcpExporter, err := texporter.New(texporter.WithProjectID(projectID))
+
+	if err != nil {
+		return nil, fmt.Errorf("could not create GCP tracing exporter: %w", err)
+	}
 
 	provider := trace.NewTracerProvider(
-		trace.WithBatcher(exporter),
+		trace.WithBatcher(gcpExporter),
 		trace.WithSampler(trace.AlwaysSample()),
 		trace.WithResource(resources),
 	)
 
 	otel.SetTracerProvider(provider)
-
-	if err != nil {
-		return nil, fmt.Errorf("could not install tracing pipeline: %w", err)
-	}
 
 	w3Propagator := propagation.TraceContext{}
 	gcpPropagator := gcppropagator.New()
