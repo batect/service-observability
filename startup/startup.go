@@ -188,7 +188,7 @@ func initTracing(gcpProjectID string, honeycombAPIKey string, resources *resourc
 	otel.SetTracerProvider(provider)
 
 	w3Propagator := propagation.TraceContext{}
-	gcpPropagator := gcppropagator.New()
+	gcpPropagator := gcppropagator.CloudTraceOneWayPropagator{}
 
 	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(w3Propagator, gcpPropagator))
 
