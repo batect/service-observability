@@ -56,6 +56,8 @@ jobs:
       - build
     permissions:
       contents: write
+      issues: write
+      pull-requests: write
 
     steps:
       - name: Checkout code
