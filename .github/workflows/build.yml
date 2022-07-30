@@ -54,6 +54,8 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'batect/services-common'
     needs:
       - build
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
@@ -66,3 +68,5 @@ jobs:
 
       - name: Create release
         run: npx semantic-release@v19.0.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
