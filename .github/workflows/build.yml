@@ -59,9 +59,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3.0.2
 
-      - name: Create release
-        uses: go-semantic-release/action@v1.18.0
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.4.1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          dry: true
-          allow-initial-development-versions: true
+          node-version: 16
+
+      - name: Create release
+        run: npx semantic-release@v19.0.3
