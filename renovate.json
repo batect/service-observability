@@ -42,6 +42,16 @@
       "extractVersion": "^v(?<version>.*)$",
       "fileMatch": ["(^|/)Dockerfile$"],
       "automerge": true
+    },
+    {
+      "matchPaths": [
+        ".github/workflows/**/*",
+        ".batect/build-env/**/*",
+        "batect",
+        "batect.cmd",
+        "batect.yml"
+      ],
+      "semanticCommitScope": "deps-internal"
     }
   ],
   "regexManagers": [

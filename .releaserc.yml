@@ -21,6 +21,9 @@ plugins:
           release: minor
         - type: refactor
           release: patch
+        - type: chore
+          scope: deps-internal
+          release: false
   - "@semantic-release/release-notes-generator"
   - - "@semantic-release/github"
     - releasedLabels: false
