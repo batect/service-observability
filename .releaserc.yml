@@ -2,7 +2,8 @@ branches:
   - main
 plugins:
   - - "@semantic-release/commit-analyzer"
-    - releaseRules:
+    - preset: conventionalcommits
+      releaseRules:
         - type: feat
           release: minor
         - type: feature
@@ -26,8 +27,8 @@ plugins:
         - type: deps
           scope: internal
           release: false
-  - "@semantic-release/release-notes-generator"
-  - - preset: conventionalcommits
+  - - "@semantic-release/release-notes-generator"
+    - preset: conventionalcommits
       presetConfig:
         types:
           - type: feat
