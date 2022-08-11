@@ -3,6 +3,7 @@
     "github>batect/renovate-config:default",
     ":semanticCommits"
   ],
+  "semanticCommitType": "deps",
   "packageRules": [
     {
       "matchManagers": [
@@ -52,7 +53,7 @@
         "batect.cmd",
         "batect.yml"
       ],
-      "semanticCommitScope": "deps-internal"
+      "semanticCommitScope": "internal"
     }
   ],
   "regexManagers": [

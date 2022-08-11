@@ -21,8 +21,10 @@ plugins:
           release: minor
         - type: refactor
           release: patch
-        - type: chore
-          scope: deps-internal
+        - type: deps
+          release: minor
+        - type: deps
+          scope: internal
           release: false
   - "@semantic-release/release-notes-generator"
   - - "@semantic-release/github"
@@ -46,15 +48,14 @@ presetConfig:
       section: Styles
     - type: chore
       section: Chores
-    - type: chore
-      scope: deps
+    - type: deps
       section: Dependencies
-    - type: chore
-      scope: deps-internal
-      hidden: true
+    - type: deps
+      scope: internal
+      section: Internal Improvements
     - type: chore
       scope: pipeline
-      hidden: true
+      section: Internal Improvements
     - type: refactor
       section: Refactoring
     - type: test
