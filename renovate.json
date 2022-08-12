@@ -1,9 +1,9 @@
 {
   "extends": [
     "github>batect/renovate-config:default",
-    ":semanticCommits"
+    ":semanticCommits",
+    ":semanticCommitType(deps)"
   ],
-  "semanticCommitType": "deps",
   "packageRules": [
     {
       "matchManagers": [
