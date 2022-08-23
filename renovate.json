@@ -21,7 +21,6 @@
         "^github.com/GoogleCloudPlatform/opentelemetry-operations-go$"
       ],
       "groupName": "OpenTelemetry packages",
-      "semanticCommitType": "chore",
       "automerge": true
     },
     {
