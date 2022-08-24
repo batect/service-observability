@@ -2,7 +2,8 @@
   "extends": [
     "github>batect/renovate-config:default",
     ":semanticCommits",
-    ":semanticCommitTypeAll(deps)"
+    ":semanticCommitTypeAll(deps)",
+    ":semanticCommitScopeDisabled"
   ],
   "packageRules": [
     {
