@@ -22,8 +22,8 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func loggerForRequest(logger logrus.FieldLogger, projectID string, req *http.Request) logrus.FieldLogger {
-	traceID := TraceIDFromContext(req.Context())
+func loggerForRequest(ctx context.Context, logger logrus.FieldLogger, projectID string) logrus.FieldLogger {
+	traceID := TraceIDFromContext(ctx)
 
 	return logger.WithFields(logrus.Fields{
 		"trace": fmt.Sprintf("projects/%s/traces/%s", projectID, traceID),
@@ -41,7 +41,7 @@ func LoggerFromContext(ctx context.Context) logrus.FieldLogger {
 
 func LoggerMiddleware(baseLogger logrus.FieldLogger, projectID string, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-		logger := loggerForRequest(baseLogger, projectID, req)
+		logger := loggerForRequest(req.Context(), baseLogger, projectID)
 		logger.Debug("Processing request.")
 
 		ctx := ContextWithLogger(req.Context(), logger)
