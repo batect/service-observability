@@ -23,8 +23,8 @@ import (
 	"go.opentelemetry.io/otel/trace"
 )
 
-func extractTraceID(req *http.Request) string {
-	span := trace.SpanFromContext(req.Context())
+func extractTraceID(ctx context.Context) string {
+	span := trace.SpanFromContext(ctx)
 
 	if span.SpanContext().HasTraceID() {
 		return span.SpanContext().TraceID().String()
@@ -44,7 +44,8 @@ func TraceIDFromContext(ctx context.Context) string {
 
 func TraceIDExtractionMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-		ctx := ContextWithTraceID(req.Context(), extractTraceID(req))
+		ctx := req.Context()
+		ctx = ContextWithTraceID(ctx, extractTraceID(ctx))
 		next.ServeHTTP(w, req.WithContext(ctx))
 	})
 }
