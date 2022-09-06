@@ -1,4 +1,4 @@
-FROM golang:1.19.0-buster
+FROM golang:1.19.1-buster
 
 ARG GOLANGCI_LINT_VERSION=1.49.0
 
