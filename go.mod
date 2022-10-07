@@ -11,7 +11,7 @@ require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.8.8
 	github.com/charleskorn/logrus-stackdriver-formatter v0.3.1
 	github.com/google/uuid v1.3.0
-	github.com/onsi/gomega v1.20.2
+	github.com/onsi/gomega v1.21.1
 	github.com/sirupsen/logrus v1.9.0
 	go.opentelemetry.io/contrib/instrumentation/host v0.36.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.36.0
