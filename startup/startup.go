@@ -18,7 +18,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"time"
 
 	"cloud.google.com/go/profiler"
 	mexporter "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric"
@@ -33,8 +32,9 @@ import (
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
+	"go.opentelemetry.io/otel/metric/global"
 	"go.opentelemetry.io/otel/propagation"
-	controller "go.opentelemetry.io/otel/sdk/metric/controller/basic"
+	"go.opentelemetry.io/otel/sdk/metric"
 	"go.opentelemetry.io/otel/sdk/resource"
 	"go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
@@ -96,7 +96,7 @@ func initProfiling(serviceName string, serviceVersion string, gcpProjectID strin
 }
 
 func initMetrics(gcpProjectID string, resources *resource.Resource) (func(), error) {
-	pusher, err := initMetricsPipeline(gcpProjectID, resources)
+	provider, err := initMetricsPipeline(gcpProjectID, resources)
 
 	if err != nil {
 		return nil, err
@@ -109,7 +109,7 @@ func initMetrics(gcpProjectID string, resources *resource.Resource) (func(), err
 	return func() {
 		logrus.Info("Flushing metrics...")
 
-		if err := pusher.Stop(context.Background()); err != nil {
+		if err := provider.Shutdown(context.Background()); err != nil {
 			logrus.WithError(err).Warn("Flushing metrics failed.")
 		}
 
@@ -117,26 +117,26 @@ func initMetrics(gcpProjectID string, resources *resource.Resource) (func(), err
 	}, nil
 }
 
-func initMetricsPipeline(projectID string, resources *resource.Resource) (*controller.Controller, error) {
-	opts := []mexporter.Option{
+func initMetricsPipeline(projectID string, resources *resource.Resource) (*metric.MeterProvider, error) {
+	exporterOpts := []mexporter.Option{
 		mexporter.WithProjectID(projectID),
-		mexporter.WithOnError(func(err error) {
-			logrus.WithError(err).Warn("Metric exporter reported error.")
-		}),
 	}
 
-	controllerOpts := []controller.Option{
-		controller.WithPushTimeout(30 * time.Second),
-		controller.WithResource(resources),
-	}
-
-	pusher, err := mexporter.InstallNewPipeline(opts, controllerOpts...)
+	exporter, err := mexporter.New(exporterOpts...)
 
 	if err != nil {
-		return nil, fmt.Errorf("could not install metrics pipeline: %w", err)
+		return nil, fmt.Errorf("could not create metrics exporter: %w", err)
 	}
 
-	return pusher, nil
+	providerOpts := []metric.Option{
+		metric.WithResource(resources),
+		metric.WithReader(metric.NewPeriodicReader(exporter)),
+	}
+
+	provider := metric.NewMeterProvider(providerOpts...)
+	global.SetMeterProvider(provider)
+
+	return provider, nil
 }
 
 func initEnvironmentMetricsInstrumentation() error {
