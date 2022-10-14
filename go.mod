@@ -7,26 +7,26 @@ require (
 	cloud.google.com/go/monitoring v1.4.0 // indirect
 	cloud.google.com/go/profiler v0.3.0
 	cloud.google.com/go/trace v1.2.0 // indirect
-	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.32.8
-	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.8.8
+	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.34.1
+	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.10.1
 	github.com/charleskorn/logrus-stackdriver-formatter v0.3.1
 	github.com/google/uuid v1.3.0
 	github.com/onsi/gomega v1.22.1
 	github.com/sirupsen/logrus v1.9.0
-	go.opentelemetry.io/contrib/instrumentation/host v0.36.0
-	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.36.0
-	go.opentelemetry.io/contrib/instrumentation/runtime v0.36.0
-	go.opentelemetry.io/otel v1.10.0
-	go.opentelemetry.io/otel/sdk v1.10.0
-	go.opentelemetry.io/otel/sdk/metric v0.31.0
-	go.opentelemetry.io/otel/trace v1.10.0
+	go.opentelemetry.io/contrib/instrumentation/host v0.36.3
+	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.36.3
+	go.opentelemetry.io/contrib/instrumentation/runtime v0.36.3
+	go.opentelemetry.io/otel v1.11.0
+	go.opentelemetry.io/otel/sdk v1.11.0
+	go.opentelemetry.io/otel/sdk/metric v0.32.3
+	go.opentelemetry.io/otel/trace v1.11.0
 )
 
 require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.8.0
 	github.com/onsi/ginkgo/v2 v2.3.1
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.10.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.10.0
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.11.0
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.11.0
 	google.golang.org/grpc v1.50.0
 )
 
