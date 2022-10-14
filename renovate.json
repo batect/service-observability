@@ -10,7 +10,8 @@
       "matchManagers": [
         "batect",
         "batect-wrapper",
-        "dockerfile"
+        "dockerfile",
+        "github-actions"
       ],
       "automerge": true
     },
