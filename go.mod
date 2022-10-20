@@ -13,9 +13,9 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/onsi/gomega v1.22.1
 	github.com/sirupsen/logrus v1.9.0
-	go.opentelemetry.io/contrib/instrumentation/host v0.36.3
-	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.36.3
-	go.opentelemetry.io/contrib/instrumentation/runtime v0.36.3
+	go.opentelemetry.io/contrib/instrumentation/host v0.36.4
+	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.36.4
+	go.opentelemetry.io/contrib/instrumentation/runtime v0.36.4
 	go.opentelemetry.io/otel v1.11.1
 	go.opentelemetry.io/otel/sdk v1.11.1
 	go.opentelemetry.io/otel/sdk/metric v0.33.0
