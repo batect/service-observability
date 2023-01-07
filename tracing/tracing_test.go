@@ -18,6 +18,8 @@ import (
 	"net/http/httptest"
 
 	"github.com/batect/services-common/tracing"
+	. "github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/gomega"
 )
 
 var _ = Describe("Naming HTTP request spans", func() {

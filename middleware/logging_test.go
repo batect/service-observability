@@ -20,6 +20,8 @@ import (
 	"strings"
 
 	"github.com/batect/services-common/middleware"
+	. "github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/gomega"
 	"github.com/sirupsen/logrus"
 	"github.com/sirupsen/logrus/hooks/test"
 )
