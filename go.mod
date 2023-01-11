@@ -4,9 +4,9 @@ go 1.19
 
 require (
 	cloud.google.com/go v0.105.0 // indirect
-	cloud.google.com/go/monitoring v1.6.0 // indirect
+	cloud.google.com/go/monitoring v1.8.0 // indirect
 	cloud.google.com/go/profiler v0.3.1
-	cloud.google.com/go/trace v1.2.0 // indirect
+	cloud.google.com/go/trace v1.4.0 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.34.2
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.10.2
 	github.com/charleskorn/logrus-stackdriver-formatter v0.3.1
@@ -28,7 +28,7 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.11.1
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.11.1
 	go.opentelemetry.io/otel/metric v0.33.0
-	google.golang.org/grpc v1.51.0
+	google.golang.org/grpc v1.52.0
 )
 
 require (
@@ -67,7 +67,7 @@ require (
 	golang.org/x/tools v0.4.0 // indirect
 	google.golang.org/api v0.102.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20221024183307-1bc688fe9f3e // indirect
+	google.golang.org/genproto v0.0.0-20221118155620-16455021b5e6 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
