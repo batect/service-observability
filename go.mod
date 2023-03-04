@@ -24,7 +24,7 @@ require (
 
 require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.8.0
-	github.com/onsi/ginkgo/v2 v2.8.4
+	github.com/onsi/ginkgo/v2 v2.9.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.14.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.14.0
 	go.opentelemetry.io/otel/metric v0.37.0
