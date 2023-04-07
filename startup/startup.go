@@ -27,7 +27,6 @@ import (
 	stackdriver "github.com/charleskorn/logrus-stackdriver-formatter"
 	"github.com/sirupsen/logrus"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
-	"go.opentelemetry.io/contrib/instrumentation/runtime"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
@@ -101,10 +100,6 @@ func initMetrics(gcpProjectID string, resources *resource.Resource) (func(), err
 		return nil, err
 	}
 
-	if err := initEnvironmentMetricsInstrumentation(); err != nil {
-		return nil, err
-	}
-
 	return func() {
 		logrus.Info("Flushing metrics...")
 
@@ -136,14 +131,6 @@ func initMetricsPipeline(projectID string, resources *resource.Resource) (*metri
 	global.SetMeterProvider(provider)
 
 	return provider, nil
-}
-
-func initEnvironmentMetricsInstrumentation() error {
-	if err := runtime.Start(); err != nil {
-		return fmt.Errorf("could not start collecting runtime metrics: %w", err)
-	}
-
-	return nil
 }
 
 func createHoneycombExporter(apiKey string) (*otlptrace.Exporter, error) {
