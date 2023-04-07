@@ -26,7 +26,6 @@ import (
 	"github.com/batect/services-common/tracing"
 	stackdriver "github.com/charleskorn/logrus-stackdriver-formatter"
 	"github.com/sirupsen/logrus"
-	"go.opentelemetry.io/contrib/instrumentation/host"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 	"go.opentelemetry.io/contrib/instrumentation/runtime"
 	"go.opentelemetry.io/otel"
@@ -142,10 +141,6 @@ func initMetricsPipeline(projectID string, resources *resource.Resource) (*metri
 func initEnvironmentMetricsInstrumentation() error {
 	if err := runtime.Start(); err != nil {
 		return fmt.Errorf("could not start collecting runtime metrics: %w", err)
-	}
-
-	if err := host.Start(); err != nil {
-		return fmt.Errorf("could not start collecting host metrics: %w", err)
 	}
 
 	return nil
