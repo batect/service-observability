@@ -20,7 +20,6 @@ import (
 	"net/http"
 
 	"cloud.google.com/go/profiler"
-	mexporter "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric"
 	texporter "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace"
 	gcppropagator "github.com/GoogleCloudPlatform/opentelemetry-operations-go/propagator"
 	"github.com/batect/services-common/tracing"
@@ -30,9 +29,7 @@ import (
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
-	"go.opentelemetry.io/otel/metric/global"
 	"go.opentelemetry.io/otel/propagation"
-	"go.opentelemetry.io/otel/sdk/metric"
 	"go.opentelemetry.io/otel/sdk/resource"
 	"go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
@@ -53,12 +50,6 @@ func InitialiseObservability(serviceName string, serviceVersion string, gcpProje
 		semconv.ServiceVersionKey.String(serviceVersion),
 	)
 
-	flushMetrics, err := initMetrics(gcpProjectID, resources)
-
-	if err != nil {
-		return nil, err
-	}
-
 	flushTraces, err := initTracing(gcpProjectID, honeycombAPIKey, resources)
 
 	if err != nil {
@@ -66,7 +57,6 @@ func InitialiseObservability(serviceName string, serviceVersion string, gcpProje
 	}
 
 	return func() {
-		flushMetrics()
 		flushTraces()
 	}, nil
 }
@@ -91,46 +81,6 @@ func initProfiling(serviceName string, serviceVersion string, gcpProjectID strin
 	}
 
 	return nil
-}
-
-func initMetrics(gcpProjectID string, resources *resource.Resource) (func(), error) {
-	provider, err := initMetricsPipeline(gcpProjectID, resources)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return func() {
-		logrus.Info("Flushing metrics...")
-
-		if err := provider.Shutdown(context.Background()); err != nil {
-			logrus.WithError(err).Warn("Flushing metrics failed.")
-		}
-
-		logrus.Info("Flushing complete.")
-	}, nil
-}
-
-func initMetricsPipeline(projectID string, resources *resource.Resource) (*metric.MeterProvider, error) {
-	exporterOpts := []mexporter.Option{
-		mexporter.WithProjectID(projectID),
-	}
-
-	exporter, err := mexporter.New(exporterOpts...)
-
-	if err != nil {
-		return nil, fmt.Errorf("could not create metrics exporter: %w", err)
-	}
-
-	providerOpts := []metric.Option{
-		metric.WithResource(resources),
-		metric.WithReader(metric.NewPeriodicReader(exporter)),
-	}
-
-	provider := metric.NewMeterProvider(providerOpts...)
-	global.SetMeterProvider(provider)
-
-	return provider, nil
 }
 
 func createHoneycombExporter(apiKey string) (*otlptrace.Exporter, error) {
