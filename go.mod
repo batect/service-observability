@@ -7,7 +7,7 @@ require (
 	cloud.google.com/go/monitoring v1.12.0 // indirect
 	cloud.google.com/go/profiler v0.3.1
 	cloud.google.com/go/trace v1.8.0 // indirect
-	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.36.0
+	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.37.0
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.13.0
 	github.com/charleskorn/logrus-stackdriver-formatter v0.3.1
 	github.com/google/uuid v1.3.0
