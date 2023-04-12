@@ -51,13 +51,11 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.8.0 h1:mWIyT5XYd1jZCE9vpwolh0r5a/yA6fO6FRFvOXVN6tg=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.8.0/go.mod h1:M2LNJDLE5udg/GF+81jWPJ5L2qkzo5KO/IWahxofRWU=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.36.0 h1:vzdNJ7Xwp+7PYRB2B1d7pN5vrckQkkyR5Zvu0JBjSxc=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.36.0/go.mod h1:8uQOxrsZvhhoSAKoV5v6BvB6dCblBQBk+6DyBDt7sso=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.13.0 h1:aRQEQ57Mw12h0tG8oo2UGC5d8fpUFCvD1lcS9fdGh6I=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.13.0/go.mod h1:WzE/bKzbWw91rEv1w53y4taJheFSkUzp2Mu8uItorHg=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/cloudmock v0.37.0 h1:+3ioRuJPNQk6WkbdClWVo8FyfpXu/ZXePQ3syDwrN4o=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping v0.37.0 h1:k5x4SiDgKS8wVQO/ww1fnoh5gwYEg6Wsi+1z5kB9uDM=
-github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping v0.37.0/go.mod h1:oEccMakRmMNrayCPR+5OmZE/aeXmTPzUtmomEXIPBdI=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.13.1 h1:sp0yJmv4948oRRHO+oobBbdX4hu9OxYApelEMgrUrwE=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.13.1/go.mod h1:R3iiqq2szEWcV2fugUIH/GsGeOs4U1V2nC7sOy6kccQ=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/cloudmock v0.37.1 h1:7itwqoVPFgQb+V0bPKnadS2PbKmVc6icomiQaLvwfwc=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping v0.37.1 h1:ah7raobL5uMeft+7+qMK4SCixxx1/HnIaLgYfdN8n4c=
+github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping v0.37.1/go.mod h1:oEccMakRmMNrayCPR+5OmZE/aeXmTPzUtmomEXIPBdI=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
 github.com/TV4/logrus-stackdriver-formatter v0.1.0/go.mod h1:wwS7hOiBvP6SBD0UXCa767+VhHkaXrfX0MzUojYcN0Q=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
@@ -239,8 +237,6 @@ go.opentelemetry.io/otel/metric v0.37.0 h1:pHDQuLQOZwYD+Km0eb657A25NaRzy0a+eLyKf
 go.opentelemetry.io/otel/metric v0.37.0/go.mod h1:DmdaHfGt54iV6UKxsV9slj2bBRJcKC1B1uvDLIioc1s=
 go.opentelemetry.io/otel/sdk v1.14.0 h1:PDCppFRDq8A1jL9v6KMI6dYesaq+DFcDZvjsoGvxGzY=
 go.opentelemetry.io/otel/sdk v1.14.0/go.mod h1:bwIC5TjrNG6QDCHNWvW4HLHtUQ4I+VQDsnjhvyZCALM=
-go.opentelemetry.io/otel/sdk/metric v0.37.0 h1:haYBBtZZxiI3ROwSmkZnI+d0+AVzBWeviuYQDeBWosU=
-go.opentelemetry.io/otel/sdk/metric v0.37.0/go.mod h1:mO2WV1AZKKwhwHTV3AKOoIEb9LbUaENZDuGUQd+j4A0=
 go.opentelemetry.io/otel/trace v1.14.0 h1:wp2Mmvj41tDsyAJXiWDWpfNsOiIyd38fy85pyKcFq/M=
 go.opentelemetry.io/otel/trace v1.14.0/go.mod h1:8avnQLK+CG77yNLUae4ea2JDQ6iT+gozhnZjy/rw9G8=
 go.opentelemetry.io/proto/otlp v0.7.0/go.mod h1:PqfVotwruBrMGOCsRd/89rSnXhoiJIqeYNgFYFoEGnI=
