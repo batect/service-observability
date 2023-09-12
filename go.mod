@@ -12,16 +12,16 @@ require (
 	github.com/onsi/gomega v1.27.10
 	github.com/sirupsen/logrus v1.9.3
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.43.0
-	go.opentelemetry.io/otel v1.17.0
-	go.opentelemetry.io/otel/sdk v1.17.0
-	go.opentelemetry.io/otel/trace v1.17.0
+	go.opentelemetry.io/otel v1.18.0
+	go.opentelemetry.io/otel/sdk v1.18.0
+	go.opentelemetry.io/otel/trace v1.18.0
 )
 
 require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go v1.8.0
 	github.com/onsi/ginkgo/v2 v2.12.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.17.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.17.0
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.18.0
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.18.0
 	google.golang.org/grpc v1.58.0
 )
 
@@ -44,13 +44,13 @@ require (
 	github.com/googleapis/gax-go/v2 v2.11.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.16.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	go.opentelemetry.io/otel/metric v1.17.0 // indirect
+	go.opentelemetry.io/otel/metric v1.18.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.0.0 // indirect
 	golang.org/x/crypto v0.12.0 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/oauth2 v0.10.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
-	golang.org/x/sys v0.11.0 // indirect
+	golang.org/x/sys v0.12.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
 	golang.org/x/tools v0.12.0 // indirect
 	google.golang.org/api v0.126.0 // indirect
